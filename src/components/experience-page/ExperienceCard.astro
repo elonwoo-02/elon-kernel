@@ -16,7 +16,7 @@ interface Props {
 const { type, item, index = 0 } = Astro.props as Props;
 ---
 
-<article class="card reveal border border-slate-300/95 bg-slate-50/45 p-5 rounded-lg">
+<article class="card reveal opacity-0 translate-y-2 transition-opacity transition-transform duration-300 ease-out border border-slate-300/95 bg-slate-50/45 p-5 rounded-lg">
   <div class="flex flex-wrap items-baseline justify-between gap-2">
     <h3 class="text-lg font-semibold tracking-tight text-slate-900">{item.title}</h3>
     {type === 'project' && <p class="text-sm text-slate-600">{item.period}</p>}
@@ -50,4 +50,3 @@ const { type, item, index = 0 } = Astro.props as Props;
     </a>
   )}
 </article>
-

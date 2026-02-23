@@ -29,8 +29,21 @@ const { sections } = Astro.props as Props;
     class="hidden lg:block border border-slate-300/90 bg-slate-50/35 p-4"
     aria-hidden="true"
   >
+    <!-- Close button for mobile overlay -->
+    <div class="flex items-center justify-between mb-3 lg:hidden">
+      <p class="mb-0 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">On This Page</p>
+      <button
+        type="button"
+        data-toc-close
+        aria-label="Close table of contents"
+        class="inline-flex items-center gap-2 rounded-md border border-transparent bg-transparent px-2 py-1 text-sm text-slate-700"
+      >
+        Close
+      </button>
+    </div>
+
     <nav aria-label="Experience sections">
-      <p class="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">On This Page</p>
+      <p class="hidden lg:block mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">On This Page</p>
       <ul class="space-y-1.5">
         {sections.map((section) => (
           <li>

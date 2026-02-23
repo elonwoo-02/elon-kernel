@@ -10,27 +10,37 @@ interface Props {
 const ScrollRevealIsland = ({ selector = ".reveal", rootMargin = "0px 0px -10% 0px", threshold = 0.15, staggerMs = 60 }: Props) => {
   useEffect(() => {
     const reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reducedMotion) return;
+    if (reducedMotion) {
+      // Remove reveal class and ensure visible
+      const elems = Array.from(document.querySelectorAll<HTMLElement>(selector));
+      elems.forEach((el) => {
+        el.classList.remove("reveal");
+        el.classList.add("opacity-100", "translate-y-0");
+      });
+      return;
+    }
 
     const elems = Array.from(document.querySelectorAll<HTMLElement>(selector));
     if (!elems.length) return;
-
-    elems.forEach((el) => {
-      el.style.opacity = "0";
-      el.style.transform = "translateY(8px)";
-      el.style.transition = "opacity 350ms cubic-bezier(.2,.9,.2,1), transform 350ms cubic-bezier(.2,.9,.2,1)";
-    });
 
     const observer = new IntersectionObserver(
       (entries, io) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          const index = elems.indexOf(entry.target as HTMLElement);
           const el = entry.target as HTMLElement;
-          setTimeout(() => {
-            el.style.opacity = "1";
-            el.style.transform = "none";
-          }, index * staggerMs);
+          const index = elems.indexOf(el);
+
+          const apply = () => {
+            el.classList.remove("opacity-0", "translate-y-2");
+            el.classList.add("opacity-100", "translate-y-0");
+          };
+
+          if (staggerMs > 0) {
+            setTimeout(() => apply(), index * staggerMs);
+          } else {
+            apply();
+          }
+
           io.unobserve(entry.target);
         });
       },

@@ -17,6 +17,7 @@ import SectionToc from "../components/experience-page/SectionToc.astro";
 import SectionTocIsland from "../components/experience-page/SectionTocIsland";
 import SectionTocMobileIsland from "../components/experience-page/SectionTocMobileIsland";
 import ScrollRevealIsland from "../components/experience-page/ScrollRevealIsland";
+import Timeline from "../components/experience-page/Timeline.astro";
 
 const pageTitle = "Experience | Mr. Woo";
 ---
@@ -42,6 +43,7 @@ const pageTitle = "Experience | Mr. Woo";
           subtitle="Selected technical work relevant to research-oriented MSc training."
         >
           <ProjectList items={projectItems} />
+          <Timeline items={projectItems} />
         </ExperienceSection>
 
         <ExperienceSection
