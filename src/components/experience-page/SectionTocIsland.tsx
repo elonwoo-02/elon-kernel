@@ -30,7 +30,9 @@ const SectionTocIsland = () => {
         if (!section) return null;
         return { id, link, section };
       })
-      .filter((entry): entry is { id: string; link: HTMLAnchorElement; section: HTMLElement } => !!entry);
+      .filter(
+        (entry): entry is { id: string; link: HTMLAnchorElement; section: HTMLElement } => !!entry,
+      );
 
     if (!sectionEntries.length) return;
 
@@ -55,6 +57,31 @@ const SectionTocIsland = () => {
 
     // Initial paint.
     paintActive(sectionEntries[0].id);
+
+    const reducedMotion = typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Click handler for smooth scrolling and hash update
+    const handleClick = (evt: Event) => {
+      const a = evt.currentTarget as HTMLAnchorElement;
+      const id = a?.dataset?.targetId;
+      if (!id) return;
+      evt.preventDefault();
+      const el = document.getElementById(id);
+      if (!el) return;
+      try {
+        el.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+        // update URL hash without creating an extra history entry
+        history.pushState(null, "", `#${id}`);
+      } catch (e) {
+        // fallback: set location.hash
+        location.hash = `#${id}`;
+      }
+    };
+
+    // Attach click listeners
+    sectionEntries.forEach((entry) => entry.link.addEventListener("click", handleClick));
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -92,7 +119,25 @@ const SectionTocIsland = () => {
 
     sectionEntries.forEach((entry) => observer.observe(entry.section));
 
-    return () => observer.disconnect();
+    // If page loaded with a hash, attempt to scroll to it after a short delay
+    if (location.hash) {
+      const targetId = location.hash.replace("#", "");
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        setTimeout(() => {
+          try {
+            targetEl.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+          } catch (e) {
+            location.hash = `#${targetId}`;
+          }
+        }, 60);
+      }
+    }
+
+    return () => {
+      observer.disconnect();
+      sectionEntries.forEach((entry) => entry.link.removeEventListener("click", handleClick));
+    };
   }, []);
 
   return null;
