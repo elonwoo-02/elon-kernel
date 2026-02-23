@@ -4,6 +4,8 @@ import { BLOG_EVENTS } from "../events";
 type ViewName = "article" | "moment" | "note";
 const VIEW_NAMES: ViewName[] = ["article", "moment", "note"];
 
+const STORAGE_KEY = "blog-current-view";
+
 const BlogSidebarIsland = () => {
   useEffect(() => {
     const drawer = document.getElementById("drawer-sidebar");
@@ -19,7 +21,19 @@ const BlogSidebarIsland = () => {
 
     if (!drawer) return;
 
-    let isOpen = !mobileQuery.matches;
+    let isOpen = false;
+
+    const getStoredView = (): ViewName => {
+      try {
+        const stored = sessionStorage.getItem(STORAGE_KEY);
+        if (stored && VIEW_NAMES.includes(stored as ViewName)) {
+          return stored as ViewName;
+        }
+      } catch (error) {
+        console.warn("Failed to read view from sessionStorage in sidebar:", error);
+      }
+      return "article";
+    };
 
     const syncNavActiveState = (activeView: ViewName) => {
       navItems.forEach((item) => {
@@ -123,12 +137,13 @@ const BlogSidebarIsland = () => {
     };
 
     const onBreakpointChange = () => {
-      isOpen = !mobileQuery.matches;
       applyDrawerState();
     };
 
     applyDrawerState();
-    syncNavActiveState("article");
+    // Use stored view if available so refresh keeps the previously selected view
+    const initialView = getStoredView();
+    syncNavActiveState(initialView);
 
     navItems.forEach((item) => {
       item.addEventListener("click", onNavItemClick);

@@ -48,9 +48,18 @@ self.addEventListener("fetch", (event) => {
     url.pathname.startsWith("/_astro/") ||
     /\.(?:css|js|mjs)$/.test(url.pathname);
 
+  // Detect an explicit reload / bypass-cache from the browser (e.g. user refresh)
+  const isReload =
+    request.cache === "reload" ||
+    request.headers.get("pragma") === "no-cache" ||
+    (request.headers.get("cache-control") || "").includes("no-cache") ||
+    (request.headers.get("cache-control") || "").includes("max-age=0");
+
   if (isPageRequest || isNetworkFirstAsset) {
-    event.respondWith(
-      fetch(request)
+    // If this is an explicit reload, force a network fetch with no-store so the
+    // browser gets fresh content. Otherwise use normal network-first strategy.
+    const doNetworkFetch = (req) =>
+      fetch(req)
         .then((response) => {
           putInCache(request, response.clone());
           return response;
@@ -59,7 +68,17 @@ self.addEventListener("fetch", (event) => {
           caches
             .match(request)
             .then((cached) => cached || (isPageRequest ? caches.match("/") : undefined)),
-        ),
+        );
+
+    if (isReload) {
+      // Create a no-store request to bypass any intermediate caches
+      const noStoreReq = new Request(request, { cache: "no-store", mode: request.mode, credentials: request.credentials, redirect: request.redirect });
+      event.respondWith(doNetworkFetch(noStoreReq));
+      return;
+    }
+
+    event.respondWith(
+      doNetworkFetch(request),
     );
     return;
   }
