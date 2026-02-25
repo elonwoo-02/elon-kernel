@@ -5,6 +5,8 @@ export interface HeroProfile {
   researchTitle: string;
   researchBullets: string[];
   closing: string;
+  // optional avatar path relative to public/, e.g. /avatars/default.png
+  avatar?: string;
 }
 
 export interface ActionLinks {
@@ -52,6 +54,8 @@ export const heroProfile: HeroProfile = {
   ],
   closing:
     "I am currently applying for MSc programs and seeking research-oriented training opportunities.",
+  // default avatar (uses existing public/avatars/default.png)
+  avatar: "/avatars/default.png",
 };
 
 export const actionLinks: ActionLinks = {

@@ -1,12 +1,12 @@
 ---
-title: 'Ubuntu22.04'
+title: '在WSL2中安装Ubuntu22.04并配置网络代理'
 pubDate: 2022-07-01
-description: '这是我 Astro 博客的第二篇文章。'
+description: '在这篇文章中，我将分享我在WSL2中安装Ubuntu22.04并配置网络代理的过程。通过更换APT源和配置局域网代理，我成功地提升了软件包更新速度，并实现了在局域网内的网络访问。希望这篇文章能帮助到需要在WSL2中使用Ubuntu的朋友们。'
 author: 'Elon Woo'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow.'
-tags: ["astro", "blogging", "learning in public", "successes"]
+tags: ["wsl2", "ubuntu", "networking", "proxy"]
 likeCount: 7
 shareCount: 2
 docked: false

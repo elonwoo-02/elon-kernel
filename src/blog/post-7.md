@@ -1,15 +1,13 @@
 ---
-title: "误删博客文章恢复流程（实战版）"
+title: "如何用git回复误删的博客文章？"
 pubDate: 2026-02-11
-description: "只讲一件事：如何用 Git 快速、可控地恢复误删的博客文章，并完成验证与提交。"
+description: "在不破坏其他改动的前提下，把 `src/blog` 恢复到指定提交后的正确状态，并可安全提交。"
 author: "Elon Woo"
 tags: ["git", "workflow", "devlog", "blogging"]
 likeCount: 0
 shareCount: 0
 docked: false
 ---
-
-这篇只记录“误删文章恢复”，不讲别的。目标是：在不破坏其他改动的前提下，把 `src/blog` 恢复到指定提交后的正确状态，并可安全提交。
 
 ## 0. 先判断是否真的删了
 
