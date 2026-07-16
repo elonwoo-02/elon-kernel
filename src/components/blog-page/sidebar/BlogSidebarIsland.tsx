@@ -21,7 +21,8 @@ const BlogSidebarIsland = () => {
 
     if (!drawer) return;
 
-    let isOpen = false;
+    // Sidebar starts open on desktop, closed on mobile
+    let isOpen = !mobileQuery.matches;
 
     const getStoredView = (): ViewName => {
       try {
