@@ -53,13 +53,17 @@ export const initDock = (selector = '#mac-dock', options: DockInitOptions = {}) 
   const cleanupVisibility = createDockVisibility(dock);
   const cleanupActions = bindDockActions(dock);
 
-  const isSystemPath = ['/', '/blog/', '/about/'].includes(payload.currentPath);
-  const isBlogPostPath = /^\/posts\/.+/.test(payload.currentPath);
+  // Use the actual URL instead of payload.currentPath because the Dock
+  // component's data-dock attribute can become stale during client-side
+  // navigation (the DOM element is preserved by Astro's View Transitions).
+  const resolvedPath = window.location.pathname;
+  const isSystemPath = ['/', '/blog/', '/about/'].includes(resolvedPath);
+  const isBlogPostPath = /^\/posts\/.+/.test(resolvedPath);
 
-  if (!isSystemPath && isBlogPostPath && payload.currentPath) {
+  if (!isSystemPath && isBlogPostPath) {
     store.addItem({
       label: payload.pageTitle || document.title || 'Article',
-      href: payload.currentPath,
+      href: resolvedPath,
       icon: articleIcon,
     });
   }
