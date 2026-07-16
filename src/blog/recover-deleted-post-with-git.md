@@ -17,7 +17,7 @@ docked: false
 git status -sb
 ```
 
-如果看到类似 `D src/blog/post-1.md`，说明是工作区删除；如果远端也没了，再走后面的“恢复 + 提交 + 推送”。
+如果看到类似 `D src/blog/my-first-blog-post.md`，说明是工作区删除；如果远端也没了，再走后面的”恢复 + 提交 + 推送”。
 
 ## 1. 找到恢复基准提交
 
