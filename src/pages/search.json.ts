@@ -13,7 +13,6 @@ export async function GET() {
     { title: 'Home', url: '/' },
     { title: 'Elon Kernel', url: '/blog/' },
     { title: 'About', url: '/about/' },
-    { title: 'Experience', url: '/experience/' },
     { title: 'Moment', url: '/moment/' },
     { title: 'Tags', url: '/tags/' },
   ];
