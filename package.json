@@ -13,8 +13,11 @@
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.17.1",
     "daisyui": "^5.5.17",
+    "katex": "^0.18.1",
     "pillow": "^0.0.9",
     "preact": "^10.28.3",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
