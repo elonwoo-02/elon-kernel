@@ -20,7 +20,7 @@ shareCount: 0
 
 LLMs 在 KGs 上进行推理时面临知识鸿沟和幻觉问题——即使 LLM 能给出正确答案，缺乏 KG 约束也可能导致推理路径的幻觉。现有的KG增强LLM推理方法（如检索式和代理式）要么依赖于精确的外部检索器，泛化能力差，要么计算成本高，延迟大，且都未能有效解决幻觉问题。为了消除LLM在KG推理中的幻觉，并确保推理的忠实性，作者提出了一种新的范式，将LLM的非结构化推理与KG的结构化知识相结合。下图对比了现有的 KG 增强 LLM 推理范式（检索式和代理式）与本文提出的 GCR 框架。
 
-![](精读 0721：Graph-constrained Reasoning-1784563858146.png)
+![](gcr-overview.png)
 
 ## 核心方法
 
@@ -68,7 +68,7 @@ $$
 
 **图约束解码（Graph-constrained Decoding）。** 统一LLM的推理能力与KG的结构化知识，生成忠实于KG的推理路径，消除幻觉。设计指令提示，引导LLM生成推理路径和假设答案，采用 KG-Trie 作为约束，指导LLM的解码过程，确保只生成在KG中有效的推理路径。下图展示了一个具体示例，对于问题"Justin Bieber 的兄弟叫什么名字？"，LLM 生成了从 Justin Bieber 到 Jaxon Bieber 的推理路径。
 
-![](精读 0721：Graph-constrained Reasoning-1784564738689.png)
+![](gcr-example.png)
 
 在数学上，GCR 将标准解码过程分解为常规解码，并通过引入约束进行修正：
 
@@ -132,35 +132,35 @@ $$
 ### 主要结果
 GCR 在 WebQSP 和 CWQ 数据集上均达到最佳性能，Hit 指标分别比次优方法高出 2.1% 和 9.1%。GCR 实现了 100% 的忠实推理率，有效消除了推理幻觉。表 1 展示了 GCR 与 LLM 推理方法、图推理方法、KG+LLM 方法在 WebQSP 和 CWQ 上的性能对比，GCR 在 Hit 和 F1 指标上均达到 SOTA 性能。
 
-![](精读 0721：Graph-constrained Reasoning-1784564198903.png)
+![](gcr-table1-results.png)
 
 表 2 对比了 GCR 与检索式和代理式方法在 WebQSP 上的运行时间和 LLM 调用次数，GCR 在合理的时间和调用次数下实现了最佳性能，KG-Trie 的并行计算优势显著降低了计算成本和延迟。
 
-![](精读 0721：Graph-constrained Reasoning-1784564266182.png)
+![](gcr-table2-efficiency.png)
 
 GCR 在 FreebaseQA 和 CSQA 数据集上，零样本性能分别比 ChatGPT 和 GPT-4o-mini 提高了 8.2% 和 7.6% 的准确率，展现出强大的泛化能力。
 
 ### 消融研究与参数分析
 **组件有效性。** 表 3 展示了移除 KG 专用 LLM 或通用 LLM 任一组件都会导致性能显著下降，证明两者对 GCR 性能的重要性。
 
-![](精读 0721：Graph-constrained Reasoning-1784564326033.png)
+![](gcr-table3-ablation.png)
 
 **不同 LLM 分析。** 表 4 比较了不同 KG 专用 LLM（微调/零样本/少样本）和通用 LLM 的性能。微调后的轻量级 LLM（0.5B）性能可超越大型 LLM（70B），说明微调对 KG 推理的有效性；大型 LLM 在通用和 KG 专用角色中表现更优，强调了模型容量的重要性。
 
-![](精读 0721：Graph-constrained Reasoning-1784564375255.png)
+![](gcr-table4-llm-analysis.png)
 
 **束搜索大小 K。** 图 4 分析了束搜索大小 K 对 GCR 性能的影响。F1 在 K=10 时达到峰值，平衡了探索和利用；K 过大时搜索空间复杂度增加引入噪声。时间成本从 K=1 的 1.4s 增加到 K=20 的 7.8s，因此实验中设 K=10。
 
-![](精读 0721：Graph-constrained Reasoning-1784564395435.png)
+![](gcr-fig4-beamsearch.png)
 
 **路径跳数 L。** 表 5 分析了 GCR 在不同路径跳数 L 下的性能。GCR 在两个数据集上均实现 100% 忠实推理率；移除 KG 约束后准确率和忠实推理率显著下降，说明 KG 约束不仅缩小搜索空间以提高推理能力，还在防止幻觉方面起关键作用。
 
-![](精读 0721：Graph-constrained Reasoning-1784564453610.png)
+![](gcr-table5-path-length.png)
 
 **案例研究。** 表 6 通过案例研究对比了有无约束时 LLM 生成路径和答案的正确性，展示了 GCR 在消除幻觉方面的有效性。
 
-![](精读 0721：Graph-constrained Reasoning-1784564502124.png)
+![](gcr-table6-cases.png)
 
 **零样本泛化。** 表 7 展示了 GCR 在 FreebaseQA、CSQA 和 MedQA 等未见过的 KGQA 数据集上的零样本泛化能力，GCR 显著优于 ChatGPT 和 GPT-4o-mini。
 
-![](精读 0721：Graph-constrained Reasoning-1784564535763.png)
+![](gcr-table7-zeroshot.png)
