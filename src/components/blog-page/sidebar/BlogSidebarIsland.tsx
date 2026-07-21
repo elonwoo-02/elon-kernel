@@ -56,12 +56,9 @@ const BlogSidebarIsland = () => {
     const applyDrawerState = () => {
       if (mobileQuery.matches) {
         drawer.style.removeProperty("width");
-        drawer.style.removeProperty("transform");
+        drawer.style.removeProperty("pointer-events");
+        drawer.style.transform = isOpen ? "translateX(0)" : "translateX(-100%)";
         drawer.style.pointerEvents = isOpen ? "auto" : "none";
-        drawer.classList.toggle("translate-x-0", isOpen);
-        drawer.classList.toggle("-translate-x-full", !isOpen);
-        drawer.classList.toggle("pointer-events-auto", isOpen);
-        drawer.classList.toggle("pointer-events-none", !isOpen);
         drawer.classList.toggle("shadow-lg", isOpen);
         backdrop?.classList.toggle("opacity-100", isOpen);
         backdrop?.classList.toggle("pointer-events-auto", isOpen);
