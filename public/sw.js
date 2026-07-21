@@ -1,4 +1,4 @@
-const CACHE_NAME = "pwa-cache-v7";
+const CACHE_NAME = "pwa-cache-v8";
 const PRECACHE_URLS = [
   "/",
   "/manifest.webmanifest",
@@ -76,8 +76,11 @@ self.addEventListener("fetch", (event) => {
       return;
     }
 
+    // For normal navigations, bypass browser HTTP cache so Cloudflare edge
+    // can return fresh content via ETag validation instead of stale cached HTML.
+    const noCacheReq = new Request(request, { cache: "no-cache", mode: request.mode, credentials: request.credentials, redirect: request.redirect });
     event.respondWith(
-      doNetworkFetch(request),
+      doNetworkFetch(noCacheReq),
     );
     return;
   }
