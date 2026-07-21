@@ -1,13 +1,11 @@
 ---
-title: "文献精读 | 将知识图谱结构融入 LLM 解码实现零幻觉推理"
+title: 文献精读 | 将知识图谱结构融入 LLM 解码实现零幻觉推理
 pubDate: 2026-07-21
-description: "精读 ICML 2025 论文 Graph-constrained Reasoning，提出 GCR 框架将知识图谱结构整合到 LLM 解码过程中，实现零幻觉的忠实推理。"
+description: 精读 ICML 2025 论文 Graph-constrained Reasoning，提出 GCR 框架将知识图谱结构整合到 LLM 解码过程中，实现零幻觉的忠实推理。
 author: Eland Woo
 tags:
-  - 论文精读
   - 知识图谱
   - LLM
-  - ICML 2025
 ---
 
 # 图约束推理（Graph-constrained Reasoning）：将知识图谱结构融入 LLM 解码实现零幻觉推理

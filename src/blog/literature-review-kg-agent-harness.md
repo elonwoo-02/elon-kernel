@@ -1,18 +1,15 @@
 ---
-title: "文献综述 | 知识图谱与 Agent Harness 融合"
+title: 文献综述 | 知识图谱与 Agent Harness 融合
 pubDate: 2026-07-21
-description: "大型语言模型驱动的智能体正从简单的'模型+工具'范式向具有标准化组件接口的Agent Harness架构演进。本文提出'组件—语义—编排'三维评估框架，系统梳理知识图谱在Agent Harness七个核心组件中的融合方案与增强效果。"
+description: 本文提出'组件—语义—编排'三维评估框架，系统梳理知识图谱在Agent Harness七个核心组件中的融合方案与增强效果。
 author: Eland Woo
 image:
-  url: "https://cdn1.deepmd.net/static/img/5a0fc5b2generated-call_c57430399c594a20ba1f94ee.png"
-  alt: "KG增强Agent Harness的三维评估框架"
+  url: https://cdn1.deepmd.net/static/img/5a0fc5b2generated-call_c57430399c594a20ba1f94ee.png
+  alt: KG增强Agent Harness的三维评估框架
 tags:
   - 知识图谱
   - Agent
   - LLM
-  - 智能体架构
-  - 语义层
-  - 多智能体协作
 ---
 
 ## 摘要
