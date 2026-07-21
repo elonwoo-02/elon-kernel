@@ -1,7 +1,7 @@
 import { useEffect } from "preact/hooks";
 
-const ACTIVE_LINK_CLASSES = ["border-slate-900", "text-slate-900", "font-semibold", "bg-white/65"];
-const INACTIVE_LINK_CLASSES = ["border-transparent", "text-slate-500", "font-normal", "bg-transparent"];
+const ACTIVE_CLASS = "post-toc-link--active";
+const INACTIVE_CLASS = "post-toc-link--inactive";
 
 const PostTocIsland = () => {
   useEffect(() => {
@@ -30,8 +30,8 @@ const PostTocIsland = () => {
       activeId = id;
       entries.forEach((entry) => {
         const isActive = entry.id === activeId;
-        entry.link.classList.remove(...(isActive ? INACTIVE_LINK_CLASSES : ACTIVE_LINK_CLASSES));
-        entry.link.classList.add(...(isActive ? ACTIVE_LINK_CLASSES : INACTIVE_LINK_CLASSES));
+        entry.link.classList.toggle(ACTIVE_CLASS, isActive);
+        entry.link.classList.toggle(INACTIVE_CLASS, !isActive);
         if (isActive) {
           entry.link.setAttribute("aria-current", "true");
         } else {

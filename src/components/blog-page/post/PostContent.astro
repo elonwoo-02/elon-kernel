@@ -27,12 +27,15 @@
 
   .post-markdown :global(h2) {
     font-size: clamp(1.35rem, 1.2rem + 0.6vw, 1.75rem);
-    padding-bottom: 0.25rem;
-    border-bottom: 1px solid color-mix(in srgb, var(--app-border) 70%, transparent);
+    padding: 0.5rem 0 0.5rem 0.85rem;
+    border-left: 4px solid var(--app-accent);
+    border-bottom: 1px solid color-mix(in srgb, var(--app-accent) 30%, transparent);
   }
 
   .post-markdown :global(h3) {
     font-size: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
+    padding-left: 0.7rem;
+    border-left: 2px solid color-mix(in srgb, var(--app-accent) 40%, transparent);
   }
 
   .post-markdown :global(p),
@@ -50,6 +53,11 @@
     color: var(--app-link);
     text-decoration: underline;
     text-underline-offset: 0.2em;
+    transition: color 200ms ease;
+  }
+
+  .post-markdown :global(a:hover) {
+    color: var(--app-accent-hover);
   }
 
   .post-markdown :global(code) {
@@ -78,37 +86,92 @@
   }
 
   .post-markdown :global(blockquote) {
-    margin: 1rem 0;
-    padding: 0.75rem 1rem;
-    border-left: 3px solid color-mix(in srgb, var(--app-border) 75%, transparent);
-    background: color-mix(in srgb, var(--app-surface-2) 45%, transparent);
+    margin: 1.5rem 0;
+    padding: 0.85rem 1.25rem;
+    border-left: 3px solid var(--app-accent);
+    background: color-mix(in srgb, var(--app-accent-soft) 60%, transparent);
+    border-radius: 0 0.4rem 0.4rem 0;
+    color: var(--app-text);
+    font-style: italic;
   }
 
   .post-markdown :global(img) {
     border-radius: 0.6rem;
     border: 1px solid color-mix(in srgb, var(--app-border) 70%, transparent);
-    margin: 1rem 0;
+    margin: 1.5rem auto;
     max-width: 100%;
     height: auto;
+    display: block;
   }
-  
+
+  /* === Figure & Caption === */
+  .post-markdown :global(figure) {
+    margin: 2rem auto;
+    text-align: center;
+  }
+
+  .post-markdown :global(figure img) {
+    margin: 0 auto 0.75rem;
+  }
+
+  .post-markdown :global(figcaption) {
+    font-size: 0.85rem;
+    color: var(--app-text-muted);
+    line-height: 1.5;
+    padding: 0.5rem 1rem;
+    background: color-mix(in srgb, var(--app-accent-soft) 40%, transparent);
+    border-radius: 0.4rem;
+    display: inline-block;
+    border: 1px solid color-mix(in srgb, var(--app-accent) 20%, transparent);
+  }
+
+  /* === Tables === */
   .post-markdown :global(table) {
     width: 100%;
     border-collapse: collapse;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
     overflow-x: auto;
     display: block;
+    font-size: 0.92rem;
+    border-radius: 0.5rem;
+    border: 1px solid color-mix(in srgb, var(--app-border) 70%, transparent);
+  }
+
+  .post-markdown :global(th) {
+    background: color-mix(in srgb, var(--app-accent) 12%, transparent);
+    color: var(--app-text);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
   }
 
   .post-markdown :global(th),
   .post-markdown :global(td) {
-    border: 1px solid color-mix(in srgb, var(--app-border) 90%, transparent);
-    padding: 0.55rem 0.7rem;
+    border: 1px solid color-mix(in srgb, var(--app-border) 80%, transparent);
+    padding: 0.6rem 0.85rem;
     text-align: left;
+    vertical-align: top;
+  }
+
+  .post-markdown :global(tbody tr:nth-child(even)) {
+    background: color-mix(in srgb, var(--app-surface-2) 30%, transparent);
+  }
+
+  .post-markdown :global(tbody tr:hover) {
+    background: color-mix(in srgb, var(--app-accent-soft) 40%, transparent);
   }
 
   .post-markdown :global(hr) {
-    border-color: color-mix(in srgb, var(--app-border) 70%, transparent);
-    margin: 1.3rem 0;
+    border: none;
+    height: 1px;
+    background: color-mix(in srgb, var(--app-accent) 25%, transparent);
+    margin: 2rem 0;
+  }
+
+  /* === Inline small text / keywords === */
+  .post-markdown :global(strong) {
+    color: var(--app-text);
+    font-weight: 650;
   }
 </style>

@@ -69,6 +69,22 @@ export const markdownPostLayoutTimeline: TimelineEntry[] = [
       '长文场景下阅读进度条可用。',
     ],
   },
+  {
+    date: '2026-07-21',
+    title: '文章页排版与配色升级',
+    tag: 'Post',
+    summary: '移除 TOC 侧栏，居中单栏布局，accent 色系点缀标题/标签/表格/引用块。',
+    details: [
+      '移除 TOC 侧栏及 Island，文章页改为居中单栏流式布局，max-w-3xl 约束行宽。',
+      'H2/H3 增加左侧 accent 色装饰条，区分章节层级。',
+      '标签改用 accent 色描边+底色，悬停填充实色。',
+      '引用块改用 accent 边框+浅底+斜体。',
+      '表格表头 tint 底色、斑马纹、悬停高亮统一 accent 色系。',
+      '图注 figcaption 增加 accent 底色标签样式。',
+      '正文链接悬停时过渡到 accent-hover。',
+      '修复右侧内容区 sticky ARTICLE 头无背景导致的文字与卡片重叠。',
+    ],
+  },
 ];
 
 export const baseLayoutTimeline: TimelineEntry[] = [
