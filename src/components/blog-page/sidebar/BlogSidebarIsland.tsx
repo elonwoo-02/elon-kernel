@@ -69,6 +69,7 @@ const BlogSidebarIsland = () => {
         }
         drawer.classList.toggle("shadow-lg", isOpen);
         backdrop?.classList.toggle("opacity-100", isOpen);
+        backdrop?.classList.toggle("pointer-events-auto", isOpen);
       } else if (isOpen) {
         drawer.classList.remove("translate-x-0", "-translate-x-full");
         drawer.classList.remove("pointer-events-none");
@@ -103,6 +104,11 @@ const BlogSidebarIsland = () => {
       if (!mobileQuery.matches || !isOpen) return;
       isOpen = false;
       applyDrawerState();
+    };
+
+    const onBackdropClick = (event: Event) => {
+      event.stopPropagation();
+      closeDrawerOnMobile();
     };
 
     const onDocumentClick = (event: Event) => {
@@ -159,7 +165,7 @@ const BlogSidebarIsland = () => {
 
     document.addEventListener("click", onDocumentClick);
     closeButton?.addEventListener("click", toggleDrawer);
-    backdrop?.addEventListener("click", closeDrawerOnMobile);
+    backdrop?.addEventListener("click", onBackdropClick);
     drawer.addEventListener("click", onDrawerClick);
     if (typeof mobileQuery.addEventListener === "function") {
       mobileQuery.addEventListener("change", onBreakpointChange);
@@ -176,7 +182,7 @@ const BlogSidebarIsland = () => {
       });
       document.removeEventListener("click", onDocumentClick);
       closeButton?.removeEventListener("click", toggleDrawer);
-      backdrop?.removeEventListener("click", closeDrawerOnMobile);
+      backdrop?.removeEventListener("click", onBackdropClick);
       drawer.removeEventListener("click", onDrawerClick);
       if (typeof mobileQuery.removeEventListener === "function") {
         mobileQuery.removeEventListener("change", onBreakpointChange);

@@ -1,0 +1,27 @@
+---
+import BackArrowIcon from "../../shared/icons/blog/BackArrowIcon.astro";
+import SettingIcon from "../../shared/icons/blog/SettingIcon.astro";
+---
+
+<div
+  class="md:hidden content-header px-5 py-2.5 sticky top-0 z-20 flex justify-between items-center text-gray-400 bg-[var(--app-bg)]"
+>
+  <button
+    type="button"
+    class="inline-flex shrink-0 items-center justify-center p-2 -ml-2 rounded-xl transition-colors hover:bg-base-200 hover:text-gray-600"
+    onclick="window.history.back()"
+    aria-label="Go back"
+  >
+    <BackArrowIcon />
+  </button>
+
+  <div class="flex shrink-0 items-center gap-1">
+    <button
+      type="button"
+      class="p-2 -mr-2 rounded-xl transition-colors hover:bg-base-200 hover:text-gray-600"
+      aria-label="Settings"
+    >
+      <SettingIcon />
+    </button>
+  </div>
+</div>
