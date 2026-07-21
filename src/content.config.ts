@@ -22,8 +22,6 @@ const blog = defineCollection({
       seriesOrder: z.number().int().optional(),
       changes: z.array(z.string()).optional(),
       draft: z.boolean().optional(),
-      likeCount: z.number().int().min(0).optional(),
-      shareCount: z.number().int().min(0).optional(),
       docked: z.boolean().optional()
     })
 });

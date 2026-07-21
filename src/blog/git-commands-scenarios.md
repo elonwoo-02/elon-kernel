@@ -7,8 +7,6 @@ image:
   url: ""
   alt: "Terminal window on a dark background."
 tags: ["git", "workflow", "tools", "devlog"]
-likeCount: 0
-shareCount: 0
 docked: false
 ---
 

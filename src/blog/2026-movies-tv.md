@@ -7,8 +7,6 @@ image:
   url: ""
   alt: ""
 tags: ["movie", "tv show"]
-likeCount: 0
-shareCount: 0
 docked: false
 ---
 

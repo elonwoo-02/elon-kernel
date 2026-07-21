@@ -7,8 +7,6 @@ image:
   url: ""
   alt: "Notebook and terminal light."
 tags: ["git", "workflow", "writing", "devlog"]
-likeCount: 0
-shareCount: 0
 docked: false
 ---
 

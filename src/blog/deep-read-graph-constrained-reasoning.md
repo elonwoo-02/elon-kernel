@@ -8,8 +8,6 @@ tags:
   - 知识图谱
   - LLM
   - ICML 2025
-likeCount: 0
-shareCount: 0
 ---
 
 # 图约束推理（Graph-constrained Reasoning）：将知识图谱结构融入 LLM 解码实现零幻觉推理

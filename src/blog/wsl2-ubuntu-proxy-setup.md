@@ -7,8 +7,6 @@ image:
     url: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow.'
 tags: ["wsl2", "ubuntu", "networking", "proxy"]
-likeCount: 7
-shareCount: 2
 docked: false
 ---
 

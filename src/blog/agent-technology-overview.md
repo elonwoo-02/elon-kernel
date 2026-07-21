@@ -4,8 +4,6 @@ pubDate: 2026-03-15
 description: "就像VS Code不仅是个编辑器，还是一个扩展平台，智能体也是一个可扩展、可定制的综合体。"
 author: "Elon Woo"
 tags: ["Agent","programming","tools"]
-likeCount: 0
-shareCount: 0
 docked: false
 ---
 

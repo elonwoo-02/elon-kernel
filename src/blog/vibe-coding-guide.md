@@ -6,8 +6,6 @@ author: from network
 tags:
   - vibe coding
   - AI development
-likeCount: 0
-shareCount: 0
 docked: false
 ---
 
