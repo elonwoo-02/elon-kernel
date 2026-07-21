@@ -8,7 +8,7 @@ tags:
   - AI development
 likeCount: 0
 shareCount: 0
-docked: true
+docked: false
 ---
 
 # Tech Stack

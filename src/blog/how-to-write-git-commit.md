@@ -9,7 +9,7 @@ image:
 tags: ["git", "workflow", "writing", "devlog"]
 likeCount: 0
 shareCount: 0
-docked: true
+docked: false
 ---
 
 ## 1) 先拆问题，再写句子

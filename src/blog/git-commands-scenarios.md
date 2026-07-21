@@ -9,7 +9,7 @@ image:
 tags: ["git", "workflow", "tools", "devlog"]
 likeCount: 0
 shareCount: 0
-docked: true
+docked: false
 ---
 
 在我那间终端微微发热的房间里，Git 是在不断变化的工作状态之间做判断的核心逻辑。本文将这组命令按照能力分类，列出触发条件、实际目的以及需要留意的点，方便日常以更技术化的方式审视每一次操作。
