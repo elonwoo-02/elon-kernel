@@ -85,6 +85,18 @@ export const markdownPostLayoutTimeline: TimelineEntry[] = [
       '修复右侧内容区 sticky ARTICLE 头无背景导致的文字与卡片重叠。',
     ],
   },
+  {
+    date: '2026-07-21',
+    title: '解决 Cloudflare 边缘缓存导致的页面陈旧问题',
+    tag: 'Infra',
+    summary: '新增 _headers 文件，禁止 HTML 页面被 Cloudflare 边缘缓存。',
+    details: [
+      '根因：Cloudflare Pages 边缘缓存了旧 HTML，用户普通导航拿到的是旧版本。',
+      '修复：public/_headers 对 HTML 路由设 Cache-Control: no-cache。',
+      '带 hash 的 _astro/* 静态资源仍可长期缓存，不影响性能。',
+      'sw.js 使用 10 分钟 TTL，确保浏览器能及时检测到更新。',
+    ],
+  },
 ];
 
 export const baseLayoutTimeline: TimelineEntry[] = [
