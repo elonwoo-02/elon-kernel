@@ -56,18 +56,19 @@ const BlogSidebarIsland = () => {
     const applyDrawerState = () => {
       if (mobileQuery.matches) {
         drawer.style.removeProperty("width");
-        drawer.style.removeProperty("transform");
-        drawer.style.removeProperty("pointer-events");
+        if (isOpen) {
+          drawer.classList.add("translate-x-0");
+          drawer.classList.remove("-translate-x-full");
+          drawer.classList.add("pointer-events-auto");
+          drawer.classList.remove("pointer-events-none");
+        } else {
+          drawer.classList.add("-translate-x-full");
+          drawer.classList.remove("translate-x-0");
+          drawer.classList.add("pointer-events-none");
+          drawer.classList.remove("pointer-events-auto");
+        }
         drawer.classList.toggle("shadow-lg", isOpen);
         backdrop?.classList.toggle("opacity-100", isOpen);
-        backdrop?.classList.toggle("pointer-events-auto", isOpen);
-        // Use rAF to separate class changes so CSS transition triggers
-        requestAnimationFrame(() => {
-          drawer.classList.toggle("translate-x-0", isOpen);
-          drawer.classList.toggle("-translate-x-full", !isOpen);
-          drawer.classList.toggle("pointer-events-auto", isOpen);
-          drawer.classList.toggle("pointer-events-none", !isOpen);
-        });
       } else if (isOpen) {
         drawer.classList.remove("translate-x-0", "-translate-x-full");
         drawer.classList.remove("pointer-events-none");
