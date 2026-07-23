@@ -6,7 +6,7 @@ const {title, count} = Astro.props;
 ---
 <div class="flex w-full items-center justify-between">
   <button
-    class="drawer-toggle-btn relative z-10 inline-flex shrink-0 items-center justify-center p-2 -ml-2 md:ml-0 rounded-xl transition-all duration-200 group"
+    class="drawer-toggle-btn relative z-10 inline-flex shrink-0 items-center justify-center p-2 -ml-2 max-sm:ml-0 md:ml-0 rounded-xl transition-all duration-200 group"
     aria-label="Open Sidebar"
     type="button"
   >
@@ -28,7 +28,7 @@ const {title, count} = Astro.props;
     <button class="p-2 hover:bg-base-200 hover:text-gray-600 rounded-lg transition-colors">
       <slot name="header-right" />
     </button>
-    <button class="p-2 -mr-2 md:mr-0 hover:bg-base-200 hover:text-gray-600 rounded-lg transition-colors">
+    <button class="p-2 -mr-2 max-sm:mr-0 md:mr-0 hover:bg-base-200 hover:text-gray-600 rounded-lg transition-colors">
       <SearchIcon/>
     </button>
   </div>
